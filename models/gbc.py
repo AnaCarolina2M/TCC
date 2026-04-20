@@ -18,7 +18,7 @@ class GradientBoostingModel(ModelStrategy, MlFlowLog):
         self.mlflow_log = MlFlowLog(self.model, self.experiment_name, self.param_grid)
 
     def train(self, data: Path):
-        print("Training GradientBoostingModel with cleaned data...")
+        print("Preparing data for GradientBoostingModel...")
         self.df = pd.read_csv(data)
         X, y = self.df.drop('Class/ASD', axis=1), self.df['Class/ASD']
         X_train, X_test, y_train, y_test = train_test_split(

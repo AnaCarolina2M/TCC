@@ -11,16 +11,25 @@ class MlFlowLog(IMLFlowLog):
         self.experiment_name = experiment_name
         self.param_grid = param_grid
         self.grid = None
+        self.fitted_model = None
+        self.X_train = None
+        self.y_train = None 
+        self.X_test = None
+        self.y_test = None
 
-    def experiment(self, X_train, y_train, X_test, y_test):
+    #def experiment(self, X_train, y_train, X_test, y_test):
+    def experiment(self):
         print("Logging experiment details to MLflow...")
         mlflow.set_experiment(experiment_name=self.experiment_name)
         with mlflow.start_run():
             self.grid = GridSearchCV(self.model, self.param_grid, cv=5)
-            self.grid.fit(X_train, y_train)
-            y_pred = self.grid.predict(X_test)
+            self.fitted_model = self.grid.fit(self.X_train, self.y_train)
+            self.fitted_model = self.grid.best_estimator_
+            print(type(self.fitted_model))
+            y_pred = self.grid.predict(self.X_test)
             mlflow.log_params(self.grid.best_params_)
             mlflow.log_metric("best_cv_score", self.grid.best_score_)
-            mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred))
+            mlflow.log_metric("accuracy", accuracy_score(self.y_test, y_pred))
             mlflow.sklearn.log_model(self.grid.best_estimator_, "model")
             mlflow.end_run()
+            return self.fitted_model

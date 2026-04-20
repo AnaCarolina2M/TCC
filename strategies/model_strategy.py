@@ -4,3 +4,6 @@ class ModelStrategy:
 
     def train(self, X,y):
         pass
+    
+    def explains(self):
+        pass
