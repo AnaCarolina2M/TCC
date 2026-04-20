@@ -44,15 +44,28 @@ class ShapXAI(IXAI):
                 print("Explaining model predictions using SHAP...")
                 explainer = shap.Explainer(self.fitted_model, X_train)
                 shap_values = explainer(X_train)
-                importance = np.abs(shap_values).mean(axis=0)
+                
+                # Extract .values from Explanation object and handle shape
+                if hasattr(shap_values, 'values'):
+                    shap_array = shap_values.values
+                else:
+                    shap_array = np.array(shap_values)
+                
+                # For binary classification, take mean across classes if needed
+                if len(shap_array.shape) > 2:
+                    shap_array = np.mean(np.abs(shap_array), axis=2)
+                else:
+                    shap_array = np.abs(shap_array)
+                
+                importance = shap_array.mean(axis=0)
                 feature_importance = pd.DataFrame({
                     "feature": X_train.columns,
                     "importance": importance
                 })
                 print("Saving CSV now...")
                 feature_importance = feature_importance.sort_values(by="importance", ascending=False)
-                csv = feature_importance.to_csv(self.model_csv, sep="\t", index=False)
-                return shap_values,csv
+                feature_importance.to_csv(self.model_csv, sep="\t", index=False)
+                return shap_values
         except Exception as e:
             print(f"Error during SHAP explanation: {e}")
             return None

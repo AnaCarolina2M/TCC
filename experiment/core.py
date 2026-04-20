@@ -33,6 +33,8 @@ class Experiment():
 
         # self.gradient_boosting_model.train(self.cleaner.output_path)  # Train the GradientBoostingModel with the cleaned data
         # print('GradientBoostingModel training completed.')
+        # self.gradient_boosting_model.explains_gbc()  # Generate explanations for the GradientBoostingModel
+        # print('GradientBoostingModel explanations generated.')
 
         #XAI
 

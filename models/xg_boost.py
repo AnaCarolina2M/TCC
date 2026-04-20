@@ -3,12 +3,13 @@ from models.xai.shap import ShapXAI
 from strategies.model_strategy import ModelStrategy
 from mlflow_log.mlflow_log import MlFlowLog
 from xgboost import XGBClassifier   
+from models.xai.shap import ShapXAI
 from sklearn.model_selection import train_test_split
 from pathlib import Path
 import pandas as pd
 
 
-class XGBoostModel(ModelStrategy, MlFlowLog):
+class XGBoostModel(ModelStrategy, MlFlowLog, ShapXAI):
     def __init__(self):
         super().__init__(model=XGBClassifier(
             objective="binary:logistic",
@@ -28,14 +29,15 @@ class XGBoostModel(ModelStrategy, MlFlowLog):
     def train(self, data: Path):
         print("Training XGBoostModel with cleaned data...")
         self.df = pd.read_csv(data)
-        X, y = self.df.drop('Class/ASD', axis=1), self.df['Class/ASD']
+        X, y = self.df.drop(['Class/ASD', 'result'], axis=1), self.df['Class/ASD']
+        X = X.astype('float64')
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
         X, y, test_size=0.2, random_state=42)
         self.y_train = (self.y_train == "YES").astype(int)
         self.y_test = (self.y_test == "YES").astype(int)
-
         print("Training XGBoostModel with cleaned data...")
         super().experiment()
+        print("XGBoostModel training completed.")
     
     def explains_xgb(self):
         print("Generating SHAP explanations for XGBoostModel...")
