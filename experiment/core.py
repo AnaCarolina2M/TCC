@@ -2,7 +2,7 @@ from pipeline.cleaning import CleaningPipeline
 from pathlib import Path
 from models.ada import AdaModel
 from models.xg_boost import XGBoostModel
-# from models.gbc import GradientBoostingModel
+from models.gbc import GradientBoostingModel
 # from models.xai.shap import ShapXAI
 
 class Experiment():
@@ -13,7 +13,7 @@ class Experiment():
         self.cleaner.output_path = Path("data/cleaned_data.csv")
         #self.ada_model = AdaModel()  # Pass the path to the cleaned data
         self.xgboost_model = XGBoostModel()
-        # self.gradient_boosting_model = GradientBoostingModel()
+        self.gradient_boosting_model = GradientBoostingModel()
 
 
     def run(self):
@@ -26,15 +26,15 @@ class Experiment():
         #print('AdaBoostModel explanations generated.')
         #print('AdaBoostModel training completed.')
 
-        self.xgboost_model.train(self.cleaner.output_path) 
-        self.xgboost_model.explains_xgb()
-        print('XGBoostModel explanations generated.')
-        print('XGBoostModel training completed.')
+        # self.xgboost_model.train(self.cleaner.output_path) 
+        # self.xgboost_model.explains_xgb()
+        # print('XGBoostModel explanations generated.')
+        # print('XGBoostModel training completed.')
 
-        # self.gradient_boosting_model.train(self.cleaner.output_path)  # Train the GradientBoostingModel with the cleaned data
-        # print('GradientBoostingModel training completed.')
-        # self.gradient_boosting_model.explains_gbc()  # Generate explanations for the GradientBoostingModel
-        # print('GradientBoostingModel explanations generated.')
+        self.gradient_boosting_model.train(self.cleaner.output_path)  # Train the GradientBoostingModel with the cleaned data
+        print('GradientBoostingModel training completed.')
+        self.gradient_boosting_model.explains_gbc()  # Generate explanations for the GradientBoostingModel
+        print('GradientBoostingModel explanations generated.')
 
         #XAI
 
