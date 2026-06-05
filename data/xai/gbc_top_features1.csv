@@ -1,0 +1,96 @@
+feature	importance
+A5_Score	2.324110643990965
+A9_Score	2.3117994309432484
+A6_Score	2.0657256818154273
+A2_Score	1.599569418494224
+A4_Score	1.5238626500940213
+A3_Score	1.4025365105487908
+A7_Score	1.3304305284411484
+A1_Score	1.1954730001587577
+A8_Score	1.0513965144247301
+A10_Score	1.0265273837486502
+age	0.510102388395564
+relation_Self	0.3545674770637165
+gender_m	0.17171927879905388
+contry_of_res_United States	0.1578846993738927
+contry_of_res_United Arab Emirates	0.10415769936393814
+contry_of_res_New Zealand	0.08209088335077731
+contry_of_res_Canada	0.07644231329907784
+contry_of_res_India	0.07416124445462313
+ethnicity_White-European	0.06615767962482642
+contry_of_res_Malaysia	0.06398607811389534
+contry_of_res_Jordan	0.06208528057520739
+ethnicity_Latino	0.04652552742626199
+relation_Parent	0.04245941950299309
+contry_of_res_United Kingdom	0.03930798957194622
+ethnicity_Others	0.03900151689906698
+contry_of_res_Sweden	0.033139046744526626
+contry_of_res_Philippines	0.02934709367678233
+ethnicity_Black	0.024363817395850307
+contry_of_res_Italy	0.022248578162913743
+ethnicity_South Asian	0.020278271453172354
+contry_of_res_France	0.019957278839761523
+contry_of_res_Russia	0.01559922634441838
+contry_of_res_Bangladesh	0.011947116133241368
+contry_of_res_Hong Kong	0.011523323456257837
+contry_of_res_Mexico	0.011366281394308328
+ethnicity_Hispanic	0.011210632522191325
+contry_of_res_Austria	0.008311528228098592
+contry_of_res_Nepal	0.008119195998180657
+contry_of_res_Belgium	0.007681656158986569
+contry_of_res_Ecuador	0.0072138948919185045
+ethnicity_Middle Eastern 	0.007065140525378018
+contry_of_res_Pakistan	0.00637667536173415
+contry_of_res_Brazil	0.005623720461402889
+contry_of_res_Czech Republic	0.0051637621946034155
+contry_of_res_Argentina	0.004625867312275139
+contry_of_res_Australia	0.004321732863858678
+contry_of_res_Saudi Arabia	0.004285234041146136
+contry_of_res_Netherlands	0.0038710442847971482
+contry_of_res_Spain	0.0019257939984256931
+relation_Others	0.0015295019232767766
+contry_of_res_Iceland	0.0006009007441212555
+relation_Relative	0.0005152493464494376
+ethnicity_others	0.00040547519822471906
+contry_of_res_Burundi	0.00020564975323421615
+contry_of_res_AmericanSamoa	0.00012217167242696244
+contry_of_res_Nicaragua	1.3458010341439928e-08
+contry_of_res_Armenia	0.0
+contry_of_res_Angola	0.0
+ethnicity_Turkish	0.0
+ethnicity_Pasifika	0.0
+jundice	0.0
+austim	0.0
+used_app_before	0.0
+contry_of_res_Aruba	0.0
+contry_of_res_Kazakhstan	0.0
+contry_of_res_Lebanon	0.0
+contry_of_res_Ireland	0.0
+contry_of_res_Iran	0.0
+contry_of_res_Iraq	0.0
+contry_of_res_Ethiopia	0.0
+contry_of_res_Indonesia	0.0
+contry_of_res_Finland	0.0
+contry_of_res_Germany	0.0
+contry_of_res_Azerbaijan	0.0
+contry_of_res_Chile	0.0
+contry_of_res_Costa Rica	0.0
+contry_of_res_China	0.0
+contry_of_res_Cyprus	0.0
+contry_of_res_Egypt	0.0
+contry_of_res_Bahamas	0.0
+contry_of_res_Bolivia	0.0
+contry_of_res_Japan	0.0
+contry_of_res_Serbia	0.0
+contry_of_res_Niger	0.0
+contry_of_res_Oman	0.0
+contry_of_res_Portugal	0.0
+contry_of_res_Romania	0.0
+contry_of_res_Sierra Leone	0.0
+contry_of_res_Ukraine	0.0
+contry_of_res_Tonga	0.0
+contry_of_res_Sri Lanka	0.0
+contry_of_res_South Africa	0.0
+contry_of_res_Turkey	0.0
+contry_of_res_Viet Nam	0.0
+contry_of_res_Uruguay	0.0

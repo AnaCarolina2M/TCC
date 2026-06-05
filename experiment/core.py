@@ -11,7 +11,7 @@ class Experiment():
         self.cleaner = CleaningPipeline(self.data)
         self.cleaner.file_path = self.data
         self.cleaner.output_path = Path("data/cleaned_data.csv")
-        #self.ada_model = AdaModel()  # Pass the path to the cleaned data
+        self.ada_model = AdaModel()  # Pass the path to the cleaned data
         self.xgboost_model = XGBoostModel()
         self.gradient_boosting_model = GradientBoostingModel()
 
@@ -21,28 +21,18 @@ class Experiment():
         self.cleaned_data = self.cleaner.cleans()
 
         print('Data cleaning completed. Cleaned data saved to:', self.cleaner.output_path)
-        #self.ada_model.train(self.cleaner.output_path) 
-        #self.ada_model.explains_ada()
-        #print('AdaBoostModel explanations generated.')
-        #print('AdaBoostModel training completed.')
 
-        # self.xgboost_model.train(self.cleaner.output_path) 
-        # self.xgboost_model.explains_xgb()
-        # print('XGBoostModel explanations generated.')
-        # print('XGBoostModel training completed.')
+        self.ada_model.train(self.cleaner.output_path) 
+        self.ada_model.explains_ada()
+        print('AdaBoostModel explanations generated.')
+        print('AdaBoostModel training completed.')
+
+        self.xgboost_model.train(self.cleaner.output_path) 
+        self.xgboost_model.explains_xgb()
+        print('XGBoostModel explanations generated.')
+        print('XGBoostModel training completed.')
 
         self.gradient_boosting_model.train(self.cleaner.output_path)  # Train the GradientBoostingModel with the cleaned data
         print('GradientBoostingModel training completed.')
         self.gradient_boosting_model.explains_gbc()  # Generate explanations for the GradientBoostingModel
         print('GradientBoostingModel explanations generated.')
-
-        #XAI
-
-
-        # Step 2: Train Model 1
-        # self.model1.train(self.cleaned_data)
-
-        # Step 3: Train Model 2
-        # self.model2.train(self.cleaned_data)
-
-        # Additional steps like evaluation can be added here

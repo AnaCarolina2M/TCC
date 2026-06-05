@@ -3,7 +3,8 @@ from sklearn.model_selection import GridSearchCV
 from strategies.mlflow_strategy import IMLFlowLog
 from mlflow import mlflow
 import mlflow.sklearn
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score,confusion_matrix,ConfusionMatrixDisplay,RocCurveDisplay
 
 class MlFlowLog(IMLFlowLog):
     def __init__(self,model, experiment_name, param_grid: dict):
@@ -30,6 +31,23 @@ class MlFlowLog(IMLFlowLog):
             mlflow.log_params(self.grid.best_params_)
             mlflow.log_metric("best_cv_score", self.grid.best_score_)
             mlflow.log_metric("accuracy", accuracy_score(self.y_test, y_pred))
+            # mlflow.log_metric("f1_score", f1_score(self.y_test, y_pred))
+            y_proba = self.grid.predict_proba(self.X_test)[:, 1]
+            auc = roc_auc_score(self.y_test,y_proba)
+            mlflow.log_metric("roc_auc",auc)
             mlflow.sklearn.log_model(self.grid.best_estimator_, "model")
+            fig, ax = plt.subplots()
+            ConfusionMatrixDisplay.from_predictions(self.y_test,y_pred,ax=ax)
+            plt.tight_layout()
+            mlflow.log_figure(fig,"confusion_matrix.png")
+            plt.close()
+            fig, ax = plt.subplots()
+            RocCurveDisplay.from_predictions(self.y_test,y_proba, pos_label='YES',ax=ax)
+            plt.tight_layout()
+            mlflow.log_figure(fig,"roc_curve.png")
+            plt.close()
+            mlflow.sklearn.log_model(
+                self.fitted_model,
+                "model")
             mlflow.end_run()
             return self.fitted_model
